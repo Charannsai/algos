@@ -4,7 +4,7 @@
 
 **MergeSort(A, low, high)**
 1. If low < high then:
-    - mid ← \(\lfloor (low + high)/2 \rfloor\)
+    - mid ← (floor (low + high)/2)
     - MergeSort(A, low, mid)
     - MergeSort(A, mid + 1, high)
     - Merge(A, low, mid, high)
