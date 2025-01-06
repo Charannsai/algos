@@ -1,5 +1,4 @@
 
----
 
 ### **Algorithm 1: Merge Sort**
 
