@@ -1,173 +1,201 @@
-Here is a list of algorithms written in the same style and format as the handwritten N-Queens example you provided. Each algorithm is tailored for ease of understanding and directly relates to the syllabus topics provided.
 
 ---
 
-### UNIT I: Divide and Conquer
-
-#### Algorithm 1: Merge Sort
+### **Algorithm 1: Merge Sort**
 
 **MergeSort(A, low, high)**
-1. If low < high then:
-    - mid ← \(\lfloor (low + high)/2 \rfloor\)
-    - MergeSort(A, low, mid)
-    - MergeSort(A, mid + 1, high)
-    - Merge(A, low, mid, high)
+1. If low < high:
+   - Calculate mid = (low + high) // 2
+   - Call MergeSort(A, low, mid)
+   - Call MergeSort(A, mid + 1, high)
+   - Merge(A, low, mid, high)
 
 **Merge(A, low, mid, high)**
-1. Create temporary arrays L[1..mid-low+1] and R[1..high-mid].
-2. Copy data from A[low..mid] into L and A[mid+1..high] into R.
-3. Merge L and R back into A[low..high].
-4. Return.
+1. Create temporary arrays L = A[low...mid], R = A[mid+1...high]
+2. Merge L and R back into A[low...high] by comparing elements
+3. Copy any remaining elements of L and R, if present
+
+**Explanation:**
+Merge Sort works by using the divide-and-conquer strategy:
+1. **Divide:** The array is split into halves recursively until subarrays of size 1 are achieved.
+2. **Conquer:** The subarrays are sorted by merging them in sorted order. During merging, elements from the two halves are compared, and the smaller element is placed first.
+3. **Combine:** The two sorted subarrays are merged into a single sorted array.
+   
+This recursive approach ensures that all subarrays are sorted, and the time complexity is \( O(n \log n) \).
 
 ---
 
-#### Algorithm 2: Binary Search
+### **Algorithm 2: Quick Sort**
 
-**BinarySearch(A, low, high, key)**
-1. If low > high:
-    - Return -1.
-2. mid ← \(\lfloor (low + high)/2 \rfloor\).
-3. If A[mid] == key:
-    - Return mid.
-4. Else if A[mid] > key:
-    - Return BinarySearch(A, low, mid-1, key).
-5. Else:
-    - Return BinarySearch(A, mid+1, high, key).
+**QuickSort(A, low, high)**
+1. If low < high:
+   - PartitionIndex = Partition(A, low, high)
+   - Call QuickSort(A, low, PartitionIndex - 1)
+   - Call QuickSort(A, PartitionIndex + 1, high)
+
+**Partition(A, low, high)**
+1. Choose pivot = A[high]
+2. Initialize i = low - 1
+3. For j = low to high - 1:
+   - If A[j] <= pivot:
+     - Increment i
+     - Swap A[i] and A[j]
+4. Swap A[i + 1] and A[high]
+5. Return i + 1
+
+**Explanation:**
+Quick Sort is a comparison-based sorting algorithm that works by selecting a pivot element and partitioning the array into two subarrays: elements less than the pivot and elements greater than the pivot.
+1. **Partition:** Select a pivot and reorder the array such that smaller elements come before the pivot, and larger ones come after. The pivot is then placed in its correct sorted position.
+2. **Recursive Sort:** Recursively apply the same procedure to the left and right subarrays.
+
+Quick Sort is efficient for large datasets with an average time complexity of \( O(n \log n) \), though in the worst case it can degrade to \( O(n^2) \) if the pivot selection is poor.
 
 ---
 
-#### Algorithm 3: Strassen’s Matrix Multiplication
+### **Algorithm 3: Strassen’s Matrix Multiplication**
 
 **Strassen(A, B)**
-1. Divide A and B into 4 submatrices each.
-2. Compute 7 products:
-    - M1 ← (A11 + A22)(B11 + B22)
-    - M2 ← (A21 + A22)B11
-    - M3 ← A11(B12 - B22)
-    - M4 ← A22(B21 - B11)
-    - M5 ← (A11 + A12)B22
-    - M6 ← (A21 - A11)(B11 + B12)
-    - M7 ← (A12 - A22)(B21 + B22)
-3. Combine results to form C.
-4. Return C.
+1. Divide matrices A and B into four submatrices of size \( n/2 \times n/2 \).
+2. Compute seven products using Strassen's formulas:
+   - P1 = (A11 + A22)(B11 + B22)
+   - P2 = (A21 + A22)B11
+   - P3 = A11(B12 - B22)
+   - P4 = A22(B21 - B11)
+   - P5 = (A11 + A12)B22
+   - P6 = (A21 - A11)(B11 + B12)
+   - P7 = (A12 - A22)(B21 + B22)
+3. Combine the results to form the product matrix C.
+
+**Explanation:**
+Strassen’s matrix multiplication algorithm improves on the classical matrix multiplication approach:
+1. **Divide:** The matrices are recursively divided into smaller submatrices.
+2. **Conquer:** Seven specific products are computed for the submatrices, reducing the number of multiplications from 8 to 7.
+3. **Combine:** The results are combined to compute the final product.
+
+This reduces the time complexity of matrix multiplication from \( O(n^3) \) to approximately \( O(n^{2.81}) \), making it faster for large matrices.
 
 ---
 
-### UNIT II: Disjoint Sets and Backtracking
-
-#### Algorithm 4: Union-Find Algorithm
+### **Algorithm 4: Union-Find Algorithm**
 
 **UnionFind(n):**
-1. Initialize parent array P[1..n] where P[i] = i.
-2. Define Find(x):
-    - While P[x] != x:
-        - x ← P[x].
-    - Return x.
-3. Define Union(x, y):
-    - P[Find(x)] ← Find(y).
-4. Return P.
+1. Initialize parent array Parent[] and rank array Rank[]:
+   - Parent[i] = i for i in range(1, n + 1)
+   - Rank[i] = 0
+
+**Find(x):**
+1. If Parent[x] != x:
+   - Parent[x] = Find(Parent[x])
+2. Return Parent[x]
+
+**Union(x, y):**
+1. RootX = Find(x)
+2. RootY = Find(y)
+3. If RootX != RootY:
+   - If Rank[RootX] > Rank[RootY]:
+     - Parent[RootY] = RootX
+   - Else If Rank[RootX] < Rank[RootY]:
+     - Parent[RootX] = RootY
+   - Else:
+     - Parent[RootY] = RootX
+     - Rank[RootX] += 1
+
+**Explanation:**
+Union-Find is used to efficiently manage disjoint sets and detect cycles in graphs.
+1. **Find:** The `Find` operation retrieves the root of the set containing element \( x \), with path compression to optimize future queries.
+2. **Union:** The `Union` operation combines two sets by linking their roots. It uses union by rank to keep the tree shallow.
+
+The algorithm is nearly constant time, with a time complexity of \( O(\alpha(n)) \), where \( \alpha \) is the inverse Ackermann function, which grows very slowly.
 
 ---
 
-#### Algorithm 5: N-Queens Problem
+### **Algorithm 5: N-Queens Problem**
 
-Already provided as an example.
+**NQueens(k, n):**
+1. For i = 1 to n:
+   - If Place(k, i):
+     - X[k] = i
+     - If k == n:
+       - Print solution X[1...n]
+     - Else:
+       - NQueens(k + 1, n)
+
+**Place(k, i):**
+1. For j = 1 to k - 1:
+   - If X[j] == i or abs(X[j] - i) == abs(j - k):
+     - Return False
+2. Return True
+
+**Explanation:**
+The N-Queens problem uses backtracking to place \( n \) queens on an \( n \times n \) chessboard such that no two queens can attack each other.
+1. **Place:** The `Place` function checks if placing a queen in a given position is valid by ensuring no two queens are in the same column or diagonal.
+2. **Backtracking:** The algorithm recursively tries to place queens in each row and backtracks if a solution is not possible.
+
+The problem has a time complexity of \( O(n!) \), as there are \( n! \) possible placements to check.
 
 ---
 
-#### Algorithm 6: Hamiltonian Cycle (Backtracking)
-
-**HamiltonianCycle(G, path, pos):**
-1. If pos == n and G[path[pos-1]][path[0]] == 1:
-    - Return True.
-2. For v ← 1 to n:
-    - If v is not visited and G[path[pos-1]][v] == 1:
-        - path[pos] ← v.
-        - If HamiltonianCycle(G, path, pos+1):
-            - Return True.
-        - Backtrack.
-3. Return False.
-
----
-
-### UNIT III: Dynamic Programming
-
-#### Algorithm 7: 0/1 Knapsack Problem
+### **Algorithm 6: 0/1 Knapsack Problem**
 
 **Knapsack(W, wt[], val[], n):**
-1. Create a table K[0..n][0..W].
-2. For i ← 0 to n:
-    - For w ← 0 to W:
-        - If i = 0 or w = 0:
-            - K[i][w] ← 0.
-        - Else if wt[i] <= w:
-            - K[i][w] ← max(val[i] + K[i-1][w-wt[i]], K[i-1][w]).
-        - Else:
-            - K[i][w] ← K[i-1][w].
-3. Return K[n][W].
+1. Initialize dp array dp[n + 1][W + 1]
+2. For i = 0 to n:
+   - For w = 0 to W:
+     - If i == 0 or w == 0:
+       - dp[i][w] = 0
+     - Else If wt[i - 1] <= w:
+       - dp[i][w] = max(val[i - 1] + dp[i - 1][w - wt[i - 1]], dp[i - 1][w])
+     - Else:
+       - dp[i][w] = dp[i - 1][w]
+3. Return dp[n][W]
+
+**Explanation:**
+The 0/1 Knapsack problem uses dynamic programming to solve the problem of selecting items to maximize value without exceeding the weight capacity.
+1. **Dynamic Programming Table:** A table is built where `dp[i][w]` represents the maximum value that can be obtained using the first \( i \) items with a weight limit of \( w \).
+2. **Iterative Computation:** Each item is considered, and for each weight capacity, the algorithm decides whether to include or exclude the item.
+   
+The time complexity is \( O(nW) \), where \( n \) is the number of items and \( W \) is the knapsack capacity.
 
 ---
 
-#### Algorithm 8: All Pairs Shortest Path (Floyd-Warshall)
-
-**FloydWarshall(G):**
-1. Let dist[1..n][1..n] ← G.
-2. For k ← 1 to n:
-    - For i ← 1 to n:
-        - For j ← 1 to n:
-            - dist[i][j] ← min(dist[i][j], dist[i][k] + dist[k][j]).
-3. Return dist.
-
----
-
-### UNIT IV: Greedy Method
-
-#### Algorithm 9: Kruskal’s Algorithm (MST)
+### **Algorithm 7: Kruskal’s Algorithm (MST)**
 
 **Kruskal(G):**
-1. Sort all edges of G in increasing order of weight.
-2. Initialize a set T to hold edges of the MST.
-3. For each edge (u, v) in sorted order:
-    - If u and v are in different connected components:
-        - Add (u, v) to T.
-4. Return T.
+1. Sort edges of G by weight
+2. Initialize empty set MST and use Union-Find for connected components
+3. For each edge (u, v) in sorted edges:
+   - If Find(u) != Find(v):
+     - Add (u, v) to MST
+     - Union(u, v)
+4. Return MST
+
+**Explanation:**
+Kruskal’s algorithm constructs a Minimum Spanning Tree (MST) by:
+1. **Sorting:** Sorting all edges by weight.
+2. **Union-Find:** Using Union-Find to keep track of connected components and prevent cycles.
+3. **Adding Edges:** Adding edges to the MST that do not form cycles, ensuring that the total weight is minimized.
+
+The time complexity is \( O(E \log E) \), where \( E \) is the number of edges.
 
 ---
 
-#### Algorithm 10: Job Scheduling with Deadlines
-
-**JobScheduling(jobs):**
-1. Sort jobs by decreasing profit.
-2. For each job:
-    - If a free slot exists before its deadline:
-        - Schedule the job.
-3. Return scheduled jobs and total profit.
-
----
-
-### UNIT V: Branch and Bound
-
-#### Algorithm 11: Travelling Salesperson Problem (Branch and Bound)
+### **Algorithm 8: Travelling Salesperson Problem (Branch and Bound)**
 
 **TSP_BnB(G):**
-1. Initialize bound and priority queue.
-2. Enqueue root node.
-3. While queue is not empty:
-    - Dequeue a node.
-    - If promising, enqueue child nodes.
-4. Return shortest path.
+1. Initialize priority queue with root node (starting city)
+2. While queue is not empty:
+   - Dequeue node with minimum bound
+   - If node is a leaf and completes a tour:
+     - Update best solution if it’s better
+   - Else:
+     - Generate child nodes by visiting unvisited cities
+     - Calculate bounds for child nodes and enqueue if bound < current best
+
+**Explanation:**
+The Traveling Salesperson Problem (TSP) seeks the shortest route to visit all cities exactly once. Using the Branch and Bound method:
+1. **Bound Calculation:** A lower bound for the length of the tour is calculated at each step to prune paths that are unlikely to provide better solutions.
+2. **Exploration:** The algorithm explores the search tree using a priority queue and prunes branches that cannot lead to better solutions.
+   
+TSP's worst-case complexity is exponential, with time complexity \( O(n!) \).
 
 ---
-
-#### Algorithm 12: NP-Complete Verification
-
-**Verify(Solution, Problem):**
-1. If Solution satisfies Problem constraints:
-    - Return "Valid".
-2. Else:
-    - Return "Invalid".
-
----
-
-This comprehensive list covers all the major topics and algorithms specified in the syllabus. Let me know if you need additional explanations or implementations for any specific algorithm!
-
