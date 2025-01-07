@@ -162,3 +162,100 @@ Already provided as an example.
     - Return "Valid".
 2. Else:
     - Return "Invalid".
+
+
+
+
+
+
+
+
+
+
+
+
+
+ explanation of the differences between **Divide and Conquer**, **Backtracking**, **Dynamic Programming (DP)**, **Greedy**, and **Branch and Bound**, along with their use cases:
+
+---
+
+### 1. **Divide and Conquer**
+- **Concept**: Break the problem into smaller subproblems, solve each subproblem independently, and combine their results to form the solution.
+- **Key Idea**: Divide → Solve → Combine.
+- **Use Case**: Problems where splitting makes it easier to solve independently.
+- **Examples**:
+  - **Merge Sort**: Split the array into halves, sort each half, and merge them.
+  - **Binary Search**: Divide the array into two halves and search in the relevant half.
+
+**When to Use**: Use when the problem can be naturally divided into independent parts.
+
+---
+
+### 2. **Backtracking**
+- **Concept**: Explore all possible solutions recursively by trying one possibility at a time. If a solution doesn’t work, backtrack and try another.
+- **Key Idea**: Try → Check → Backtrack.
+- **Use Case**: Problems involving permutations, combinations, and constraints.
+- **Examples**:
+  - **Sudoku Solver**: Try filling each cell, and backtrack if a number violates the rules.
+  - **N-Queens Problem**: Place queens on a chessboard such that no two threaten each other.
+
+**When to Use**: Use when you need to explore multiple possibilities and constraints are involved.
+
+---
+
+### 3. **Dynamic Programming (DP)**
+- **Concept**: Break the problem into overlapping subproblems, solve each once, and store the results to avoid redundant computation.
+- **Key Idea**: Solve → Store → Reuse.
+- **Use Case**: Optimization problems with overlapping subproblems and optimal substructure.
+- **Examples**:
+  - **Fibonacci Sequence**: Store results of previous calculations to avoid recalculating.
+  - **Knapsack Problem**: Find the maximum value that can fit in a bag with weight constraints.
+
+**When to Use**: Use when the problem has overlapping subproblems and requires optimization.
+
+---
+
+### 4. **Greedy**
+- **Concept**: Make the locally optimal choice at each step, hoping to find the global optimum.
+- **Key Idea**: Take → Move → Repeat.
+- **Use Case**: Problems where a local decision leads to an overall optimal solution.
+- **Examples**:
+  - **Activity Selection**: Select the maximum number of non-overlapping activities.
+  - **Huffman Encoding**: Build an optimal prefix code for data compression.
+
+**When to Use**: Use when the problem exhibits the **greedy-choice property** (local choice leads to a global solution).
+
+---
+
+### 5. **Branch and Bound**
+- **Concept**: Solve optimization problems by systematically exploring solution spaces, "bounding" to eliminate parts that cannot produce better solutions than the current best.
+- **Key Idea**: Explore → Bound → Prune.
+- **Use Case**: Optimization problems, especially NP-Hard ones.
+- **Examples**:
+  - **Traveling Salesman Problem (TSP)**: Find the shortest route visiting all cities.
+  - **0/1 Knapsack**: Similar to DP but uses bounds to prune unnecessary calculations.
+
+**When to Use**: Use when solving optimization problems where brute force is inefficient, and bounds can reduce search space.
+
+---
+
+### Quick Comparison Table:
+
+| **Technique**     | **Key Idea**               | **Works Best For**                               | **Examples**                        |
+|--------------------|---------------------------|--------------------------------------------------|--------------------------------------|
+| **Divide & Conquer** | Divide → Solve → Combine  | Independent subproblems                          | Merge Sort, Binary Search            |
+| **Backtracking**    | Try → Check → Backtrack   | Constraints and permutations                     | Sudoku Solver, N-Queens Problem      |
+| **Dynamic Programming** | Solve → Store → Reuse    | Overlapping subproblems, optimization            | Fibonacci, Knapsack Problem          |
+| **Greedy**          | Take → Move → Repeat      | Local choice leading to global solution          | Activity Selection, Huffman Encoding |
+| **Branch & Bound**  | Explore → Bound → Prune   | Optimization with reduced search space           | TSP, 0/1 Knapsack Problem            |
+
+---
+
+### Summary:
+- **Divide and Conquer** splits and combines subproblems.
+- **Backtracking** tries all possible paths and undoes choices.
+- **DP** stores previous results to optimize.
+- **Greedy** makes local optimal choices.
+- **Branch and Bound** uses bounds to cut off unnecessary paths in search.
+
+Each technique is suited for specific types of problems, so understanding the problem structure helps in selecting the right approach.
