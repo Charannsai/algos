@@ -259,3 +259,123 @@ Already provided as an example.
 - **Branch and Bound** uses bounds to cut off unnecessary paths in search.
 
 Each technique is suited for specific types of problems, so understanding the problem structure helps in selecting the right approach.
+
+
+
+
+
+Here is a breakdown of the topics in the syllabus with their respective time complexities for the relevant cases:
+
+---
+
+### **UNIT I**
+#### **Divide and Conquer**
+1. **Binary Search**  
+   - Best Case: \(O(1)\)  
+   - Average Case: \(O(\log n)\)  
+   - Worst Case: \(O(\log n)\)
+   
+2. **Quick Sort**  
+   - Best Case: \(O(n \log n)\)  
+   - Average Case: \(O(n \log n)\)  
+   - Worst Case: \(O(n^2)\)
+   
+3. **Merge Sort**  
+   - Best Case: \(O(n \log n)\)  
+   - Average Case: \(O(n \log n)\)  
+   - Worst Case: \(O(n \log n)\)
+   
+4. **Strassen’s Matrix Multiplication**  
+   - Best/Worst Case: \(O(n^{\log_2 7}) \approx O(n^{2.81})\)
+
+---
+
+### **UNIT II**
+#### **Disjoint Sets**
+1. **Union and Find Algorithms**  
+   - Worst Case: \(O(\alpha(n))\), where \(\alpha\) is the Inverse Ackermann function (almost constant).
+
+2. **Priority Queue (Heaps)**  
+   - Insert: \(O(\log n)\)  
+   - Delete/Extract-Min or Extract-Max: \(O(\log n)\)  
+   - Build Heap: \(O(n)\)
+
+#### **Backtracking**
+1. **N-Queens Problem**  
+   - Time Complexity: \(O(n!)\)
+
+2. **Subset Sum Problem**  
+   - Worst Case: \(O(2^n)\)
+
+3. **Graph Coloring**  
+   - Worst Case: \(O(k^n)\), where \(k\) is the number of colors.
+
+4. **Hamiltonian Cycles**  
+   - Worst Case: \(O(n!)\)
+
+---
+
+### **UNIT III**
+#### **Dynamic Programming**
+1. **Optimal Binary Search Tree**  
+   - Time Complexity: \(O(n^3)\)
+
+2. **0/1 Knapsack Problem**  
+   - Time Complexity: \(O(n \times W)\), where \(W\) is the weight capacity.
+
+3. **All-Pairs Shortest Path (Floyd-Warshall Algorithm)**  
+   - Time Complexity: \(O(n^3)\)
+
+4. **Traveling Salesperson Problem (TSP)**  
+   - Time Complexity: \(O(n^2 \times 2^n)\)
+
+5. **Reliability Design**  
+   - Problem-specific but usually exponential in the worst case.
+
+---
+
+### **UNIT IV**
+#### **Greedy Method**
+1. **Job Sequencing with Deadlines**  
+   - Time Complexity: \(O(n \log n)\)
+
+2. **Knapsack Problem (Fractional)**  
+   - Time Complexity: \(O(n \log n)\)
+
+3. **Minimum Spanning Trees**  
+   - Kruskal’s Algorithm: \(O(E \log V)\), where \(E\) is the number of edges and \(V\) is the number of vertices.  
+   - Prim’s Algorithm: \(O(E + V \log V)\)
+
+4. **Single-Source Shortest Path (Dijkstra’s Algorithm)**  
+   - Time Complexity: \(O((V + E) \log V)\) using a priority queue.
+
+#### **Traversal and Search Techniques**
+1. **Binary Trees**  
+   - Preorder/Inorder/Postorder Traversal: \(O(n)\)  
+
+2. **Graphs (DFS/BFS)**  
+   - Time Complexity: \(O(V + E)\)
+
+3. **Connected Components**  
+   - Time Complexity: \(O(V + E)\) (DFS/BFS-based)
+
+---
+
+### **UNIT V**
+#### **Branch and Bound**
+1. **Traveling Salesperson Problem (TSP)**  
+   - Time Complexity: Exponential in the worst case (\(O(n!)\))  
+   - Optimized via pruning.
+
+2. **0/1 Knapsack Problem**  
+   - Time Complexity: Exponential in the worst case (\(O(2^n)\)), depending on the number of branches.
+
+3. **LC Branch and Bound vs. FIFO Branch and Bound**  
+   - LC Branch: Prioritizes promising nodes; generally more efficient.  
+   - FIFO Branch: Explores all nodes in BFS order; less efficient.
+
+#### **NP-Hard and NP-Complete Problems**
+1. **General Complexity**  
+   - NP-Hard: Problems that are at least as hard as the hardest problems in NP.  
+   - NP-Complete: Problems that are in NP and can be reduced to each other in polynomial time.  
+   - Solving: Exponential in the worst case.
