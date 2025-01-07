@@ -170,6 +170,7 @@ Already provided as an example.
 
 
 
+---
 
 
 
@@ -177,7 +178,6 @@ Already provided as an example.
 
  explanation of the differences between **Divide and Conquer**, **Backtracking**, **Dynamic Programming (DP)**, **Greedy**, and **Branch and Bound**, along with their use cases:
 
----
 
 ### 1. **Divide and Conquer**
 - **Concept**: Break the problem into smaller subproblems, solve each subproblem independently, and combine their results to form the solution.
